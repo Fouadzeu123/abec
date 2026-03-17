@@ -29,7 +29,7 @@ class PartnerController extends Controller
         ]);
 
         // Envoyer un email
-        Mail::to('contact@universalwelfare.org')->send(new PartnerRequest($validated));
+        Mail::to('globaluniversalwelfare@gmail.com')->send(new PartnerRequest($validated));
 
         return redirect()->route('partnerForm')->with('success', 'Votre demande a bien été envoyée. Nous vous répondrons rapidement.');
     }

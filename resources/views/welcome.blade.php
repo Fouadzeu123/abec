@@ -1341,7 +1341,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Fade edges -->
         <div style="position:absolute;top:0;left:0;width:12%;height:100%;background:linear-gradient(to right,#0a0f1e,transparent);z-index:2;pointer-events:none;"></div>
         <div style="position:absolute;top:0;right:0;width:12%;height:100%;background:linear-gradient(to left,#1E90FF,transparent);z-index:2;pointer-events:none;"></div>
