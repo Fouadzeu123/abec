@@ -170,7 +170,7 @@
         }
         .nav-logo-img-wrap {
             width: 48px; height: 48px;
-            border-radius: 50%;
+            
             overflow: hidden;
             border: 2px solid transparent;
             background: linear-gradient(white, white) padding-box,
@@ -634,7 +634,7 @@
             <!-- Colonne 1 : Logo + description + réseaux (glassmorphique) -->
             <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-yellow/40 transition duration-300">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-yellow/50">
+                    <div class="w-25 h-15 overflow-hidden ring-2 ring-yellow/50">
                         <img src="{{ asset('image/ab.png') }}" alt="ABEC" class="w-full h-full object-cover">
                     </div>
                     <div>

@@ -5,6 +5,11 @@
 
 @push('styles')
 <style>
+    /* ===== RESET & GLOBAL ===== */
+    * {
+        box-sizing: border-box;
+    }
+
     /* ===== HERO DON ===== */
     #donHero {
         position: relative;
@@ -80,55 +85,126 @@
     }
     .section-title span { color: #FFD700; }
 
-    /* ===== GRILLE DE CARTES "POURQUOI DONNER" ===== */
+    /* ===== GRILLE DE CARTES "POURQUOI DONNER" (MOBILE-FIRST) ===== */
     .reasons-grid {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1.1rem;
+        grid-template-columns: 1fr;          /* 1 colonne sur mobile */
+        gap: 1.5rem;                         /* espacement confortable */
         margin-top: 2.5rem;
     }
-    @media (min-width: 640px)  { .reasons-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .reasons-grid { grid-template-columns: repeat(4, 1fr); gap: 1.4rem; } }
 
+    /* Tablettes (≥640px) : 2 colonnes */
+    @media (min-width: 640px) {
+        .reasons-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+        }
+    }
+
+    /* Desktop (≥1024px) : 4 colonnes */
+    @media (min-width: 1024px) {
+        .reasons-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+    }
+
+    /* Style commun des cartes (base mobile) */
     .reason-card {
         position: relative;
         border-radius: 1rem;
         overflow: hidden;
         background: rgba(255,255,255,0.04);
         border: 1px solid rgba(255,255,255,0.08);
+        padding: 1.25rem 1rem;               /* padding réduit sur mobile */
+        text-align: center;
         transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s ease, border-color 0.3s;
         opacity: 0;
         transform: translateY(32px);
-        padding: 1.5rem 1rem;
-        text-align: center;
     }
+
+    /* Dès que la carte est visible */
     .reason-card.in-view {
         opacity: 1;
         transform: translateY(0);
     }
-    .reason-card:hover {
-        transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,215,0,0.25);
-        border-color: rgba(255,215,0,0.3);
+
+    /* Effet de survol : seulement sur les appareils avec souris (pas sur tactile) */
+    @media (hover: hover) {
+        .reason-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,215,0,0.25);
+            border-color: rgba(255,215,0,0.3);
+        }
+        .reason-card:hover .reason-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
     }
+
+    /* Icône (mobile) */
     .reason-icon {
-        font-size: 2.5rem;
+        font-size: 2rem;                     /* plus petit sur mobile */
         margin-bottom: 1rem;
         filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
         transition: transform 0.3s ease;
+        display: inline-block;               /* permet l’animation scale */
     }
-    .reason-card:hover .reason-icon { transform: scale(1.2) rotate(-5deg); }
+
+    /* Titre (mobile) */
     .reason-card h3 {
         font-size: 1rem;
         font-weight: 800;
         color: #fff;
         margin-bottom: 0.5rem;
+        line-height: 1.3;
     }
+
+    /* Description (mobile) */
     .reason-card p {
         font-size: 0.7rem;
         color: rgba(255,255,255,0.5);
         line-height: 1.5;
+        margin-bottom: 0;
     }
+
+    /* Ajustements pour tablettes (≥768px) */
+    @media (min-width: 768px) {
+        .reason-card {
+            padding: 1.5rem 1.2rem;
+        }
+        .reason-icon {
+            font-size: 2.2rem;
+        }
+        .reason-card h3 {
+            font-size: 1.1rem;
+        }
+        .reason-card p {
+            font-size: 0.75rem;
+        }
+    }
+
+    /* Ajustements pour desktop (≥1024px) */
+    @media (min-width: 1024px) {
+        .reason-card {
+            padding: 1.8rem 1.5rem;
+        }
+        .reason-icon {
+            font-size: 2.5rem;
+        }
+        .reason-card h3 {
+            font-size: 1.2rem;
+        }
+        .reason-card p {
+            font-size: 0.8rem;
+        }
+    }
+
+    /* Stagger delays (inchangés) */
+    .reason-card:nth-child(1) { transition-delay: 0.05s; }
+    .reason-card:nth-child(2) { transition-delay: 0.10s; }
+    .reason-card:nth-child(3) { transition-delay: 0.15s; }
+    .reason-card:nth-child(4) { transition-delay: 0.20s; }
+    .reason-card { transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.3s; }
 
     /* ===== DIAPORAMA SWiper ===== */
     .swiper {
@@ -265,13 +341,6 @@
         text-align: center;
         margin-bottom: 1.5rem;
     }
-
-    /* Stagger delays */
-    .reason-card:nth-child(1) { transition-delay: 0.05s; }
-    .reason-card:nth-child(2) { transition-delay: 0.10s; }
-    .reason-card:nth-child(3) { transition-delay: 0.15s; }
-    .reason-card:nth-child(4) { transition-delay: 0.20s; }
-    .reason-card { transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.3s; }
 </style>
 @endpush
 
