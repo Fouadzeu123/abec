@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>@yield('title', 'Organisation du Bien-Être Communautaire | ABEC International')</title>
+    
+    <!-- Theme Initialization -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <meta name="description" content="@yield('meta_description', 'ABEC International œuvre pour le bien-être communautaire à travers des actions concrètes en santé, éducation et environnement.')">
 
     <!-- Favicon -->
@@ -54,12 +64,49 @@
     <style>
         [x-cloak] { display: none !important; }
 
+        /* ===== THEME SYSTEM ===== */
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #9ca3af;
+            --nav-bg: rgba(255, 255, 255, 0.97);
+            --nav-border: rgba(0, 0, 0, 0.06);
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.05);
+            --footer-bg: #0a0f1c;
+            --section-alt: #f9fafb;
+            --loader-bg: #ffffff;
+            --input-bg: #ffffff;
+            --input-border: #e5e7eb;
+        }
+
+        .dark {
+            --bg-primary: #0a0f1c;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --nav-bg: rgba(10, 15, 28, 0.96);
+            --nav-border: rgba(255, 255, 255, 0.08);
+            --card-bg: #111827;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --footer-bg: #050810;
+            --section-alt: #0f172a;
+            --loader-bg: #0a0f1c;
+            --input-bg: #1f2937;
+            --input-border: #374151;
+        }
+
+        /* Transition for theme switching */
+        body { transition: background-color 0.3s ease, color 0.3s ease; }
+
         /* ===== GLOBAL ===== */
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             overflow-x: hidden;
         }
         .font-all-bold, body, h1, h2, h3, p, a, li { font-weight: bold; }
@@ -67,12 +114,16 @@
         /* ===== PAGE LOADER ===== */
         .page-loader {
             position: fixed; inset: 0; z-index: 99999;
-            background: #fff;
+            background: var(--loader-bg);
             display: flex; align-items: center; justify-content: center;
             flex-direction: column; gap: 1rem;
-            transition: opacity 0.7s ease;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .page-loader.loaded { opacity: 0; pointer-events: none; }
+        .page-loader.loaded { 
+            opacity: 0; 
+            visibility: hidden;
+            transform: scale(1.05);
+        }
         .loader-ring {
             position: relative; width: 60px; height: 60px;
         }
@@ -144,15 +195,15 @@
 
         /* Main nav area */
         .nav-glass {
-            background: rgba(255, 255, 255, 0.97);
+            background: var(--nav-bg);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid var(--nav-border);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .nav-glass.scrolled {
-            background: rgba(255, 255, 255, 0.99);
-            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.12), 0 1px 0 rgba(0,0,0,0.04);
+            background: var(--nav-bg);
+            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.12), 0 1px 0 var(--nav-border);
         }
         .nav-inner {
             max-width: 1280px; margin: 0 auto;
@@ -187,7 +238,7 @@
         .nav-logo-name {
             font-family: 'Sora', sans-serif;
             font-size: 1.3rem; font-weight: 900;
-            color: #111827;
+            color: var(--text-primary);
             letter-spacing: -0.02em;
             transition: color 0.3s ease;
         }
@@ -195,7 +246,7 @@
         .nav-logo-tagline {
             font-size: 0.6rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.12em;
-            color: #9ca3af;
+            color: var(--text-muted);
             margin-top: 2px;
         }
 
@@ -206,7 +257,7 @@
             padding: 0.4rem 0.85rem;
             border-radius: 0.5rem;
             font-size: 0.875rem; font-weight: 700;
-            color: #374151;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.25s ease, background-color 0.25s ease;
         }
@@ -250,24 +301,25 @@
         .mobile-nav-panel {
             position: fixed; top: 0; right: 0; bottom: 0;
             width: min(320px, 85vw);
-            background: #fff;
+            background: var(--bg-primary);
             z-index: 9100;
             transform: translateX(100%);
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-y: auto;
             display: flex; flex-direction: column;
+            border-left: 1px solid var(--nav-border);
         }
         .mobile-nav-panel.open { transform: translateX(0); }
         .mobile-nav-panel-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid #f3f4f6;
+            border-bottom: 1px solid var(--nav-border);
         }
         .mobile-nav-close {
             width: 36px; height: 36px;
-            border-radius: 50%; background: #f3f4f6;
+            border-radius: 50%; background: var(--input-bg);
             display: flex; align-items: center; justify-content: center;
-            color: #374151; cursor: pointer;
+            color: var(--text-primary); cursor: pointer;
             transition: background 0.2s ease, color 0.2s ease;
         }
         .mobile-nav-close:hover { background: #fee2e2; color: #ef4444; }
@@ -275,7 +327,7 @@
         .mobile-nav-link {
             display: flex; align-items: center; gap: 0.85rem;
             padding: 0.9rem 1rem; border-radius: 0.75rem;
-            color: #374151; font-weight: 700; font-size: 0.95rem;
+            color: var(--text-secondary); font-weight: 700; font-size: 0.95rem;
             text-decoration: none;
             transition: background 0.2s ease, color 0.2s ease;
             margin-bottom: 0.25rem;
@@ -286,7 +338,25 @@
             font-size: 1.1rem; flex-shrink: 0;
         }
         .mobile-nav-link:hover { background: #eff6ff; color: #1E90FF; }
-        .mobile-nav-footer { padding: 1.5rem; border-top: 1px solid #f3f4f6; }
+        .mobile-nav-footer { padding: 1.5rem; border-top: 1px solid var(--nav-border); }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            width: 40px; height: 40px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-primary);
+            background: var(--input-bg);
+            border: 1px solid var(--nav-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle-btn:hover {
+            transform: translateY(-2px);
+            background: var(--nav-bg);
+            border-color: #1E90FF;
+            box-shadow: 0 4px 12px rgba(30,144,255,0.1);
+        }
 
         /* ===== FOOTER AMÉLIORÉ (thème sombre) ===== */
         /* Footer Marquee */
@@ -524,6 +594,10 @@
 
                 <!-- Desktop Actions -->
                 <div class="hidden md:flex items-center gap-3">
+                    <button class="theme-toggle-btn" id="theme-toggle" aria-label="Changer de thème">
+                        <i class="ri-sun-line hidden dark:block"></i>
+                        <i class="ri-moon-line block dark:hidden"></i>
+                    </button>
                     <a href="{{ url('/dons') }}" class="btn-header-donate">
                         <i class="ri-heart-3-fill text-red-500"></i>
                         Faire un don
@@ -548,13 +622,19 @@
             <div class="flex items-center gap-3">
                 <img src="{{ asset('image/ab.png') }}" alt="Logo" class="w-8 h-8 rounded-full">
                 <div>
-                    <div style="font-family:'Sora',sans-serif; font-weight:900; font-size:1rem; color:#111;">ABEC</div>
-                    <div style="font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">International</div>
+                    <div style="font-family:'Sora',sans-serif; font-weight:900; font-size:1rem; color:var(--text-primary);">ABEC</div>
+                    <div style="font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted);">International</div>
                 </div>
             </div>
-            <button class="mobile-nav-close" id="mobile-menu-close" aria-label="Fermer">
-                <i class="ri-close-line text-lg"></i>
-            </button>
+            <div class="flex items-center gap-2">
+                <button class="theme-toggle-btn w-9 h-9" id="mobile-theme-toggle" aria-label="Changer de thème">
+                    <i class="ri-sun-line hidden dark:block"></i>
+                    <i class="ri-moon-line block dark:hidden"></i>
+                </button>
+                <button class="mobile-nav-close" id="mobile-menu-close" aria-label="Fermer">
+                    <i class="ri-close-line text-lg"></i>
+                </button>
+            </div>
         </div>
         <div class="mobile-nav-links">
             <a href="{{ url('/') }}" class="mobile-nav-link">
@@ -583,7 +663,7 @@
                 <span class="icon-wrap" style="background:#ecfeff; color:#0891b2;"><i class="ri-map-pin-2-line"></i></span>
                 Contact
             </a>
-            <a href="{{route('partnerForm')}}" class="mobile-nav-link" id="mobile-contact-link">
+            <a href="{{route('partnerForm')}}" class="mobile-nav-link">
                 <span class="icon-wrap" style="background:#ecfeff; color:#0891b2;"><i class="ri-handshake-line"></i></span>
                 Devenir Partenaire
             </a>
@@ -608,11 +688,11 @@
 
 
 <!-- ===== FOOTER AMÉLIORÉ ===== -->
-<footer class="relative pt-20 overflow-hidden" style="background: #0a0f1c; color: #fff;">
+<footer class="relative pt-20 overflow-hidden" style="background: var(--footer-bg); color: var(--text-primary);">
     <!-- Vague décorative -->
     <div class="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-12 md:h-16">
-            <path d="M0,0 C300,100 900,100 1200,0 V120 H0 Z" fill="#0a0f1c" opacity="0.6"></path>
+            <path d="M0,0 C300,100 900,100 1200,0 V120 H0 Z" fill="var(--footer-bg)" opacity="0.6"></path>
         </svg>
     </div>
 
@@ -623,7 +703,7 @@
     <!-- Conteneur principal -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 z-10">
         <!-- Phrase défilante premium -->
-        <div class="mb-12 py-3 border-y border-yellow/20 overflow-hidden bg-black/20 backdrop-blur-sm rounded-2xl">
+        <div class="mb-12 py-3 border-y border-yellow/20 overflow-hidden bg-yellow/5 backdrop-blur-sm rounded-2xl">
             <div class="animate-marquee whitespace-nowrap text-yellow font-black text-xl md:text-2xl tracking-[0.2em]">
                 <span class="mx-4"></span> AGIR ENSEMBLE POUR LE BIEN-ÊTRE COMMUNAUTAIRE <span class="mx-4">✦</span> SOUTENEZ NOS ACTIONS <span class="mx-4">✦</span> REJOIGNEZ LE MOUVEMENT <span class="mx-4">✦</span>
             </div>
@@ -634,15 +714,15 @@
             <!-- Colonne 1 : Logo + description + réseaux (glassmorphique) -->
             <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-yellow/40 transition duration-300">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-25 h-15 overflow-hidden ring-2 ring-yellow/50">
+                    <div class="w-16 h-16 overflow-hidden ring-2 ring-yellow/50 rounded-xl">
                         <img src="{{ asset('image/ab.png') }}" alt="ABEC" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="font-display font-black text-lg text-white">ABEC</h3>
-                        <p class="text-yellow text-xs font-bold tracking-wider">Association du Bien-Être Communautaire</p>
+                        <p class="text-yellow text-[0.65rem] font-bold tracking-wider uppercase">Organisation</p>
                     </div>
                 </div>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                <p class="text-white/80 text-sm leading-relaxed mb-6">
                     Fondée en 2021, nous agissons pour améliorer les conditions de vie des communautés vulnérables à travers l'éducation, la santé, l'environnement et la justice sociale.
                 </p>
                 <div class="flex gap-3">
@@ -748,10 +828,28 @@
     @stack('scripts')
 
     <script>
-        // ===== PAGE LOADER =====
-        window.addEventListener('load', () => {
-            setTimeout(() => document.getElementById('page-loader').classList.add('loaded'), 350);
+        // ===== PAGE LOADER OPTIMIZATION =====
+        // Hide loader faster: wait for DOM and a small buffer, instead of full window load
+        document.addEventListener('DOMContentLoaded', () => {
+            const loader = document.getElementById('page-loader');
+            // Minimum display time for the brand animation, then hide
+            setTimeout(() => {
+                loader.classList.add('loaded');
+                setTimeout(() => loader.style.display = 'none', 600);
+            }, 600);
         });
+
+        // ===== THEME TOGGLE LOGIC =====
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        themeToggle && themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle && mobileThemeToggle.addEventListener('click', toggleTheme);
 
         // ===== HEADER SCROLL EFFECT =====
         const navGlass = document.getElementById('nav-glass');

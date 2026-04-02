@@ -86,17 +86,17 @@
     /* PARTNERS MARQUEE PREMIUM (suite) */
     .marquee-fade-left {
         position: absolute; top: 0; left: 0; width: 15%; height: 100%;
-        background: linear-gradient(to right, #f3f4f6 0%, transparent 100%);
+        background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
         z-index: 2; pointer-events: none;
     }
     .marquee-fade-right {
         position: absolute; top: 0; right: 0; width: 15%; height: 100%;
-        background: linear-gradient(to left, #f3f4f6 0%, transparent 100%);
+        background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
         z-index: 2; pointer-events: none;
     }
     .partner-glass-card {
-        background: #ffffff;
-        border: 1px solid #f1f3f5;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 1.5rem;
         padding: 1.25rem 2.25rem;
         width: 270px;
@@ -438,7 +438,7 @@
         display: flex !important;
     }
     .modal-content {
-        background: #FFF8DC;
+        background: var(--card-bg);
         border-radius: 1rem;
         padding: 1.5rem;
         max-width: 90%;
@@ -494,7 +494,7 @@
     .modal-content p {
         font-size: 1rem;
         line-height: 1.6;
-        color: #333;
+        color: var(--text-secondary);
         white-space: pre-wrap;
     }
     /* Style pour les titres des sections avec ombre derrière */
@@ -524,7 +524,7 @@
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     .action-card p {
-        color: #333333;
+        color: var(--text-secondary);
     }
     .action-card button {
         color: #000000;
@@ -658,9 +658,9 @@
     .hero-spacing-offset { padding-top: 104px; }
     @media (max-width: 640px) { .hero-spacing-offset { padding-top: 68px; } }
 
-    /* === SECTION ACTIONS PREMIUM (déplacée depuis actions.blade.php) === */
+    /* === SECTION ACTIONS PREMIUM === */
     #actions {
-        background: linear-gradient(160deg, #0f0f1a 0%, #0d1b2a 50%, #0f0f1a 100%);
+        background: var(--section-alt);
         padding: 5rem 0;
         position: relative;
         overflow: hidden;
@@ -675,14 +675,14 @@
     .actions-title {
         font-size: clamp(1.6rem, 4vw, 2.8rem);
         font-weight: 900;
-        color: #ffffff;
+        color: var(--text-primary);
         text-align: center;
         letter-spacing: -0.02em;
     }
     .actions-title span { color: #FFD700; }
     .actions-sub {
         text-align: center;
-        color: rgba(255,255,255,0.55);
+        color: var(--text-muted);
         font-size: 0.95rem;
         margin-top: 0.6rem;
     }
@@ -699,8 +699,8 @@
         border-radius: 1rem;
         overflow: hidden;
         cursor: pointer;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s ease, border-color 0.3s;
         opacity: 0;
         transform: translateY(32px);
@@ -751,13 +751,13 @@
     .act-body h3 {
         font-size: 0.9rem;
         font-weight: 800;
-        color: #fff;
+        color: var(--text-primary);
         line-height: 1.3;
         margin-bottom: 0.35rem;
     }
     .act-body p {
         font-size: 0.7rem;
-        color: rgba(255,255,255,0.5);
+        color: var(--text-muted);
         line-height: 1.5;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -789,13 +789,13 @@
     .act-card:nth-child(12) { transition-delay: 0.60s; }
     .act-card { transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.3s; }
 
-    /* === SECTION ABOUT TEASER (déplacée depuis about-teaser.blade.php) === */
+    /* === SECTION ABOUT TEASER === */
     #about-teaser {
-        background: linear-gradient(160deg, #0d1b2a 0%, #0f0f1a 100%);
+        background: var(--bg-primary);
         padding: 6rem 0;
         position: relative;
         overflow: hidden;
-        border-top: 1px solid rgba(255,215,0,0.05);
+        border-top: 1px solid var(--nav-border);
     }
     .teaser-video-wrap {
         position: relative;
