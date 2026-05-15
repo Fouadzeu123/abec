@@ -37,14 +37,14 @@
             height: 100vh;
             width: 100%;
         }
-        .top-nav { background: linear-gradient(to right, #1976D2, #D32F2F); }
+        .top-nav { background: #1976D2; }
         nav a { transition: all 0.3s ease; }
         nav a:hover { transform: translateY(-2px); box-shadow: 0px 2px 8px rgba(0,0,0,0.15); }
         .media-card {
             border: none;
             overflow: hidden;
             border-radius: 0.75rem;
-            background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+            background: #ffffff;
             transition: all 0.3s ease;
         }
         .media-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
@@ -58,23 +58,23 @@
             transition: all 0.2s ease-in-out;
         }
         .like-button {
-            background: linear-gradient(to right, #1976D2, #1565C0);
+            background: #1976D2;
             color: #fff;
         }
-        .like-button.liked { background: linear-gradient(to right, #0D47A1, #082f77); }
-        .like-button:hover { background: linear-gradient(to right, #1565C0, #0D47A1); transform: scale(1.05); }
+        .like-button.liked { background: #0D47A1; }
+        .like-button:hover { background: #1565C0; transform: scale(1.05); }
         .heart-button {
-            background: linear-gradient(to right, #D32F2F, #B71C1C);
+            background: #D32F2F;
             color: #fff;
         }
-        .heart-button.hearted { background: linear-gradient(to right, #880E4F, #6B0839); }
-        .heart-button:hover { background: linear-gradient(to right, #B71C1F, #880E4F); transform: scale(1.05); }
+        .heart-button.hearted { background: #880E4F; }
+        .heart-button:hover { background: #B71C1F; transform: scale(1.05); }
         .comment-button {
-            background: linear-gradient(to right, #4CAF50, #388E3C);
+            background: #4CAF50;
             color: #fff;
         }
-        .comment-button:hover { background: linear-gradient(to right, #388E3C, #2E7D32); transform: scale(1.05); }
-        footer { background: linear-gradient(to right, #D32F2F, #1976D2); }
+        .comment-button:hover { background: #388E3C; transform: scale(1.05); }
+        footer { background: #D32F2F; }
         body {
             font-family: 'custom', sans-serif;
         }

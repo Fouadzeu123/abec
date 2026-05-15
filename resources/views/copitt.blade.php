@@ -17,7 +17,15 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
@@ -33,9 +41,22 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
       [x-cloak] { display: none; }
+      :root {
+        --bg-primary: #ffffff;
+        --text-primary: #111827;
+        --card-bg: #f9f9f9;
+        --card-border: rgba(0,0,0,0.05);
+      }
+      .dark {
+        --bg-primary: #0f172a;
+        --text-primary: #f8fafc;
+        --card-bg: #1e293b;
+        --card-border: rgba(255,255,255,0.1);
+      }
       body {
         font-family: 'Arial Black', Arial, sans-serif;
-        background-color: #ffffff;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
         font-weight: bold;
       }
       .partner-logo { width: 80px; height: 80px; object-fit: contain; transition: transform 0.3s; }
@@ -102,7 +123,8 @@
         max-width: 800px;
         margin: 0 auto;
         padding: 20px;
-        background-color: #f9f9f9;
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 0.5rem;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       }
@@ -117,7 +139,7 @@
       }
       .legal-content h3 {
         margin-top: 1.25rem;
-        color: #333;
+        color: var(--text-primary);
         text-align: center;
       }
       .legal-content ul {
@@ -146,7 +168,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.8);
+        background: var(--bg-primary);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -230,17 +252,22 @@
         </div>
     </nav>
     <!-- Header principal -->
-    <header class="bg-white shadow py-4">
+    <header class="bg-white dark:bg-slate-900 shadow py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
             <!-- Logo réduit -->
             <div class="flex-shrink-0 w-20 flex justify-center">
                 <img src="{{ asset('image/ab.png') }}" alt="logo" class="w-full h-auto">
             </div>
             <!-- Menu Desktop -->
-            <nav class="hidden md:flex space-x-6">
-                <a href="{{ url('/') }}" class="px-3 py-2 rounded-md text-sm font-bold text-gray-800 hover:bg-blue-500 hover:text-white">Accueil</a>
-                <a href="{{ url('branche') }}" class="px-3 py-2 rounded-md text-sm font-bold text-gray-800 hover:bg-blue-500 hover:text-white">Evenements</a>
-                <a href="{{ url('/dons') }}" class="px-3 py-2 rounded-md text-sm font-bold text-gray-800 hover:bg-blue-500 hover:text-white">Dons</a>
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="{{ url('/') }}" class="px-3 py-2 rounded-md text-sm font-bold text-gray-800 dark:text-white hover:bg-blue-500 hover:text-white">Accueil</a>
+                <a href="{{ url('branche') }}" class="px-3 py-2 rounded-md text-sm font-bold text-gray-800 dark:text-white hover:bg-blue-500 hover:text-white">Evenements</a>
+                <a href="{{ url('/dons') }}" class="px-3 py-2 rounded-md text-sm font-bold text-gray-800 dark:text-white hover:bg-blue-500 hover:text-white">Dons</a>
+                
+                <!-- Simple Theme Toggle -->
+                <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-50 dark:bg-slate-800 text-gray-500 dark:text-gray-400">
+                    🌓
+                </button>
             </nav>
             <!-- Menu Mobile -->
             <div class="md:hidden">
@@ -317,6 +344,17 @@
         </div>
     </main>
 
+    <script>
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+    </script>
     @include('partials.footer')
 </body>
 </html>

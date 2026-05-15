@@ -17,7 +17,7 @@
     }
     #eventsHero .hero-overlay {
         position: absolute; inset: 0;
-        background: linear-gradient(135deg, rgba(0,0,30,0.7) 0%, rgba(30,144,255,0.2) 60%, rgba(0,0,0,0.6) 100%);
+        background: rgba(0,0,30,0.65);
         z-index: 1;
     }
     #eventsHero .hero-content {
@@ -58,7 +58,7 @@
 
     /* ===== SECTIONS ÉVÉNEMENTS (fond sombre) ===== */
     .events-section {
-        background: linear-gradient(160deg, #0f0f1a 0%, #0d1b2a 50%, #0f0f1a 100%);
+        background: var(--bg-primary);
         padding: 5rem 0;
         position: relative;
         overflow: hidden;
@@ -66,14 +66,13 @@
     .events-section::before {
         content: '';
         position: absolute; inset: 0;
-        background: radial-gradient(ellipse at 20% 50%, rgba(30,144,255,0.07) 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.05) 0%, transparent 50%);
+        background: rgba(30,144,255,0.03);
         pointer-events: none;
     }
     .section-title {
         font-size: clamp(1.6rem, 4vw, 2.8rem);
         font-weight: 900;
-        color: #ffffff;
+        color: var(--text-primary);
         text-align: center;
         letter-spacing: -0.02em;
         margin-bottom: 2rem;
@@ -96,8 +95,8 @@
         border-radius: 1rem;
         overflow: hidden;
         cursor: pointer;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s ease, border-color 0.3s;
         opacity: 0;
         transform: translateY(32px);
@@ -150,7 +149,7 @@
     .event-body h3 {
         font-size: 0.9rem;
         font-weight: 800;
-        color: #fff;
+        color: var(--text-primary);
         line-height: 1.3;
         margin-bottom: 0.35rem;
     }
@@ -168,7 +167,7 @@
     }
     .event-body p {
         font-size: 0.7rem;
-        color: rgba(255,255,255,0.5);
+        color: var(--text-secondary);
         line-height: 1.5;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -242,7 +241,8 @@
         display: flex !important;
     }
     .modal-content {
-        background: #FFF8DC;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 1rem;
         padding: 1.5rem;
         max-width: 90%;
@@ -267,13 +267,14 @@
         cursor: pointer;
         width: 30px;
         height: 30px;
-        background: rgba(0,0,0,0.1);
+        background: var(--input-bg);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.2s;
         z-index: 10000;
+        color: var(--text-primary);
     }
     .modal-close:hover {
         background: #FFD700;
@@ -289,7 +290,7 @@
     }
     .modal-title {
         font-size: 1.5rem;
-        color: #1E90FF;
+        color: var(--accent);
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         margin-bottom: 0.75rem;
         padding-right: 2rem;
@@ -298,7 +299,7 @@
     .modal-content p {
         font-size: 1rem;
         line-height: 1.6;
-        color: #333;
+        color: var(--text-secondary);
         white-space: pre-wrap;
     }
 
@@ -307,7 +308,7 @@
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: #0f0f1a;
+        background: var(--loader-bg);
         display: flex;
         align-items: center;
         justify-content: center;

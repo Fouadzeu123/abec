@@ -6,6 +6,6 @@
         </svg>
         <img id="modalImage" class="modal-image" src="" alt="">
         <h3 class="modal-title" id="modalTitle"></h3>
-        <p class="text-sm text-gray-600" id="modalContent"></p>
+        <p class="text-sm" id="modalContent"></p>
     </div>
 </div>

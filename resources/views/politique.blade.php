@@ -1,26 +1,14 @@
-@extends('layouts.welcome')
+@extends('layouts.main')
 
 @section('content')
-    <!-- Loading Spinner -->
-    <div x-data="{ isLoading: true }" 
-         x-init="$nextTick(() => { window.addEventListener('load', () => setTimeout(() => isLoading = false, 2000)) })"
-         x-show="isLoading"
-         x-cloak
-         class="fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50">
-        <div class="relative w-20 h-20">
-            <div class="absolute inset-0 border-4 border-t-primary border-transparent rounded-full animate-spin"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-                <img src="{{ asset('image/ab.png') }}" alt="Logo ABEC" class="w-10 h-10 object-contain">
-            </div>
-        </div>
-    </div>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="legal-content" style="font-family: 'Arial Black', Arial, sans-serif; font-weight: bold;">
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-[var(--bg-primary)]">
+        <div class="legal-content">
             <hr class="border-2 border-yellow mb-8">
             <h1 class="text-3xl font-bold text-primary mb-6 text-center">Politique de Confidentialité</h1>
-            <p class="text-gray-700 text-center"><strong>Date d'entrée en vigueur : 26 septembre 2025</strong></p>
-            <p class="text-gray-700 text-center">Chez Universal Welfare, nous nous engageons à protéger votre vie privée et à traiter vos données personnelles de manière responsable. Cette Politique de Confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos informations lorsque vous utilisez notre site web (<a href="https://universalwelfare.com" class="text-primary hover:underline">universalwelfare.com</a>), nos services et nos applications (ci-après désignés collectivement comme les « Services »). En accédant ou en utilisant nos Services, vous acceptez les pratiques décrites dans cette politique.</p>
+            <p class="text-[var(--text-secondary)] text-center"><strong>Date d'entrée en vigueur : 26 septembre 2025</strong></p>
+            <p class="text-[var(--text-secondary)] text-center">Chez Universal Welfare, nous nous engageons à protéger votre vie privée et à traiter vos données personnelles de manière responsable. Cette Politique de Confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos informations lorsque vous utilisez notre site web (<a href="https://universalwelfare.com" class="text-primary hover:underline">universalwelfare.com</a>), nos services et nos applications (ci-après désignés collectivement comme les « Services »). En accédant ou en utilisant nos Services, vous acceptez les pratiques décrites dans cette politique.</p>
            <p class="text-gray-700 text-center">
     Si vous avez des questions sur cette Politique de Confidentialité, veuillez nous contacter à l'adresse 
     <a href="https://mail.google.com/mail/?view=cm&to=contact@universalwelfare.org" 
@@ -151,9 +139,11 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f9f9f9;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 0.5rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            color: var(--text-primary);
         }
         .legal-content h1, .legal-content h2 {
             color: #1E90FF;

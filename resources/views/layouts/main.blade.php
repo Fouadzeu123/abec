@@ -4,34 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Organisation du Bien-Être Communautaire')</title>
-    
+
     <!-- Vite (compilation CSS/JS avec Tailwind intégré) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('image/ab.png') }}">
-    
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="preconnect" href="https://unpkg.com/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://unpkg.com/remixicon@3.5.0/fonts/remixicon.css">
-    
+
     <!-- Tailwind CSS est maintenant géré uniquement par Vite, plus de CDN -->
-    
+
     <!-- AlpineJS pour l'interactivité -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Theme Script -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 
     @stack('styles')
 
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f3f4f6;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --nav-border: rgba(0, 0, 0, 0.05);
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.05);
+            --footer-bg: #0a2540;
+            --footer-text: #ffffff;
+            --loader-bg: #ffffff;
+            --input-bg: #f9fafb;
+            --input-border: #e5e7eb;
+            --accent: #1E90FF;
+            --accent-hover: #0B5ED7;
+            --hover-bg: #eff6ff;
+        }
+
+        .dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --nav-border: rgba(255, 255, 255, 0.1);
+            --card-bg: #1e293b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --footer-bg: #0a0f1c;
+            --footer-text: #f8fafc;
+            --loader-bg: #0f172a;
+            --input-bg: #1e293b;
+            --input-border: #374151;
+            --accent: #1E90FF;
+            --accent-hover: #87CEFA;
+            --hover-bg: #1e293b;
+        }
+
         [x-cloak] { display: none !important; }
-        
+
         /* Premium Header Styles */
         .glass-header {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--nav-border);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             animation: slideDown 0.6s ease-out;
         }
@@ -46,7 +95,7 @@
         }
         .nav-link {
             position: relative;
-            color: #1f2937;
+            color: var(--text-primary);
             font-weight: 700;
             transition: color 0.3s ease;
         }
@@ -68,7 +117,7 @@
             width: 100%;
         }
         .btn-donate-header {
-            background: linear-gradient(135deg, #FFD700 0%, #F5B700 50%, #FFD700 100%);
+            background: #FFD700;
             background-size: 200% auto;
             color: #000;
             font-weight: 800;
@@ -83,10 +132,10 @@
 
         /* Premium Footer Styles */
         .footer-dynamic {
-            background: linear-gradient(170deg, #1E90FF 0%, #0a2540 100%);
+            background: var(--footer-bg);
             position: relative;
             overflow: hidden;
-            color: white;
+            color: var(--footer-text);
         }
         .footer-shape-top {
             position: absolute;
@@ -105,13 +154,13 @@
             height: 50px;
         }
         .footer-shape-top .shape-fill {
-            fill: #ffffff;
+            fill: var(--bg-primary);
         }
         .footer-glow {
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
+            background: rgba(255,215,0,0.05);
             top: -300px;
             right: -200px;
             border-radius: 50%;
@@ -155,11 +204,11 @@
             box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
             border-color: #FFD700;
         }
-        
+
         /* Loading Screen */
         .page-loader {
             position: fixed; inset: 0; z-index: 99999;
-            background: #fff;
+            background: var(--loader-bg);
             display: flex; align-items: center; justify-content: center;
             transition: opacity 0.6s ease;
         }
@@ -196,7 +245,7 @@
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen text-gray-800 antialiased" x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
+<body class="flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased" x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
 
     <!-- Barre de progression de lecture -->
     <div id="scroll-progress"></div>
@@ -207,13 +256,13 @@
     </div>
 
     <!-- Header Dynamique et Attrayant -->
-    <header :class="scrolled ? 'header-scrolled py-2' : 'py-4'" 
-            class="glass-header fixed w-full top-0 z-50" 
-            x-data="{ mobileMenuOpen: false }" 
+    <header :class="scrolled ? 'header-scrolled py-2' : 'py-4'"
+            class="glass-header fixed w-full top-0 z-50"
+            x-data="{ mobileMenuOpen: false }"
             @keydown.escape="mobileMenuOpen = false">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
-                
+
                 <!-- Logo -->
                 <a href="{{ url('/') }}" class="flex items-center gap-3 group">
                     <div class="relative w-12 h-12 lg:w-16 lg:h-16 rounded-full overflow-hidden border-2 border-transparent group-hover:border-primary transition-all duration-300 shadow-sm">
@@ -244,19 +293,25 @@
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-gray-800 hover:text-primary focus:outline-none p-2 rounded-lg bg-gray-50" 
-                        @click="mobileMenuOpen = !mobileMenuOpen"
-                        :aria-expanded="mobileMenuOpen"
-                        aria-label="Menu principal">
-                    <i class="ri-menu-4-line text-2xl" x-show="!mobileMenuOpen"></i>
-                    <i class="ri-close-line text-2xl" x-show="mobileMenuOpen" x-cloak></i>
-                </button>
+                <!-- Theme Toggle & Mobile Menu Button -->
+                <div class="flex items-center gap-2">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-50 dark:bg-slate-800 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 focus:outline-none transition-colors">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <button class="md:hidden text-gray-800 dark:text-white hover:text-primary focus:outline-none p-2 rounded-lg bg-gray-50 dark:bg-slate-800"
+                            @click="mobileMenuOpen = !mobileMenuOpen"
+                            :aria-expanded="mobileMenuOpen"
+                            aria-label="Menu principal">
+                        <i class="ri-menu-4-line text-2xl" x-show="!mobileMenuOpen"></i>
+                        <i class="ri-close-line text-2xl" x-show="mobileMenuOpen" x-cloak></i>
+                    </button>
+                </div>
             </div>
         </div>
 
         <!-- Mobile Menu Overlay -->
-        <div x-show="mobileMenuOpen" 
+        <div x-show="mobileMenuOpen"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 -translate-y-4"
              x-transition:enter-end="opacity-100 translate-y-0"
@@ -264,8 +319,8 @@
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-4"
              x-cloak
-             class="md:hidden absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 py-4 px-4 flex flex-col gap-4 z-40">
-            
+             class="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 shadow-2xl border-t border-gray-100 dark:border-slate-800 py-4 px-4 flex flex-col gap-4 z-40">
+
             <a href="{{ url('/') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 text-gray-800 font-bold transition-colors">
                 <div class="w-10 h-10 rounded-full bg-blue-100 text-primary flex items-center justify-center"><i class="ri-home-smile-line"></i></div>
                 Accueil
@@ -278,13 +333,13 @@
                 <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="ri-calendar-event-line"></i></div>
                 Événements
             </a>
-            
+
             <hr class="border-gray-100 my-2">
-            
+
             <a href="{{ url('/dons') }}" class="btn-donate-header w-full py-4 rounded-xl flex items-center justify-center gap-2 text-lg">
                 <i class="ri-heart-3-fill text-red-500"></i> Faire un don
             </a>
-            
+
             <div class="flex justify-center gap-4 mt-4">
                 <a href="https://www.facebook.com/profile.php?id=61568266295634" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 text-gray-600 hover:bg-primary hover:text-white transition-colors text-xl" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
                 <a href="https://whatsapp.com/channel/0029VaYTsNkD8SE42sDpnk1w" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 text-gray-600 hover:bg-green-500 hover:text-white transition-colors text-xl" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
@@ -302,20 +357,15 @@
 
     <!-- FOOTER DYNAMIQUE ET PREMIUM -->
     <footer class="footer-dynamic pt-24 pb-8 mt-auto">
-        <!-- Vague de transition haut avec effet parallaxe léger -->
-        <div class="footer-shape-top" x-data="{ offset: 0 }" x-init="window.addEventListener('scroll', () => offset = window.scrollY * 0.05)" :style="{ transform: 'translateY(' + offset + 'px)' }">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
-        </div>
-        
+
+
         <div class="footer-glow"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
+
             <!-- Bento Grid Footer - 12 colonnes -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-16">
-                
+
                 <!-- Colonne Marque / Info (4 colonnes) -->
                 <div class="lg:col-span-4 space-y-6">
                     <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm border border-white/10 w-max">
@@ -405,7 +455,7 @@
             </div>
 
             <!-- CTA Final au centre du footer -->
-            <div class="bg-gradient-to-r from-yellow to-[#f59e0b] rounded-3xl p-8 mb-12 shadow-2xl relative overflow-hidden group">
+            <div class="bg-yellow rounded-3xl p-8 mb-12 shadow-2xl relative overflow-hidden group">
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
                 <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-black">
                     <div>
@@ -431,14 +481,14 @@
     </footer>
 
     <!-- Back to top btn -->
-    <button id="btt-btn" 
+    <button id="btt-btn"
             class="fixed bottom-6 right-6 w-12 h-12 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center opacity-0 translate-y-10 transition-all duration-300 z-40 hover:bg-yellow hover:text-black hover:scale-110"
             aria-label="Retour en haut de page">
         <i class="ri-arrow-up-double-line text-2xl"></i>
     </button>
 
     @stack('scripts')
-    
+
     <script>
         // Loader : disparaît après le chargement complet
         window.addEventListener('load', function() {
@@ -466,6 +516,46 @@
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        // Theme Toggle Logic
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            // toggle icons inside button
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // if set via local storage previously
+            if (localStorage.getItem('theme')) {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                }
+
+            // if NOT set via local storage previously
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
         });
     </script>
     @include('partials.footer')

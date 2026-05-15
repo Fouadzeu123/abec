@@ -7,7 +7,7 @@
 <style>
     /* ===== PAGE À PROPOS PREMIUM ===== */
     .about-section {
-        background: linear-gradient(160deg, #0f0f1a 0%, #0d1b2a 50%, #0f0f1a 100%);
+        background: var(--bg-primary);
         padding: 5rem 0;
         position: relative;
         overflow: hidden;
@@ -15,21 +15,20 @@
     .about-section::before {
         content: '';
         position: absolute; inset: 0;
-        background: radial-gradient(ellipse at 20% 50%, rgba(30,144,255,0.07) 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.05) 0%, transparent 50%);
+        background: rgba(30,144,255,0.03);
         pointer-events: none;
     }
     .about-title {
         font-size: clamp(1.6rem, 4vw, 2.8rem);
         font-weight: 900;
-        color: #ffffff;
+        color: var(--text-primary);
         text-align: center;
         letter-spacing: -0.02em;
     }
     .about-title span { color: #FFD700; }
     .about-sub {
         text-align: center;
-        color: rgba(255,255,255,0.55);
+        color: var(--text-muted);
         font-size: 0.95rem;
         margin-top: 0.6rem;
     }
@@ -50,8 +49,8 @@
         border-radius: 1rem;
         overflow: hidden;
         cursor: pointer;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s ease, border-color 0.3s;
         opacity: 0;
         transform: translateY(32px);
@@ -102,13 +101,13 @@
     .about-body h3 {
         font-size: 0.9rem;
         font-weight: 800;
-        color: #fff;
+        color: var(--text-primary);
         line-height: 1.3;
         margin-bottom: 0.35rem;
     }
     .about-body p {
         font-size: 0.7rem;
-        color: rgba(255,255,255,0.5);
+        color: var(--text-secondary);
         line-height: 1.5;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -131,23 +130,23 @@
 
     /* Carte pleine largeur pour texte */
     .about-text-card {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 1rem;
         padding: 2rem;
-        color: #fff;
+        color: var(--text-primary);
         backdrop-filter: blur(10px);
     }
     .about-text-card p {
-        color: rgba(255,255,255,0.7);
+        color: var(--text-secondary);
         font-size: 0.9rem;
         line-height: 1.8;
     }
 
     /* Valeurs : cartes sans image */
     .value-card {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,215,0,0.15);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 1rem;
         padding: 2rem 1rem;
         text-align: center;
@@ -170,12 +169,12 @@
         color: #FFD700;
     }
     .value-card h3 {
-        color: #fff;
+        color: var(--text-primary);
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
     }
     .value-card p {
-        color: rgba(255,255,255,0.5);
+        color: var(--text-secondary);
         font-size: 0.8rem;
     }
 
@@ -191,8 +190,8 @@
         }
     }
     .stat-item {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,215,0,0.1);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 1rem;
         padding: 1.5rem 0.5rem;
         text-align: center;
@@ -209,7 +208,7 @@
         color: #FFD700;
     }
     .stat-label {
-        color: rgba(255,255,255,0.6);
+        color: var(--text-muted);
         font-size: 0.7rem;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -250,11 +249,11 @@
 
     /* ===== SECTION VIDÉO (reprise de l'accueil) ===== */
     #about-teaser {
-        background: linear-gradient(160deg, #0d1b2a 0%, #0f0f1a 100%);
+        background: var(--section-alt);
         padding: 6rem 0;
         position: relative;
         overflow: hidden;
-        border-top: 1px solid rgba(255,215,0,0.05);
+        border-top: 1px solid var(--nav-border);
     }
     .teaser-video-wrap {
         position: relative;
@@ -266,19 +265,19 @@
     .teaser-video-wrap::after {
         content: '';
         position: absolute; inset: 0;
-        background: linear-gradient(to right, rgba(13,27,42,0.4), transparent);
+        background: rgba(13,27,42,0.3);
         pointer-events: none;
     }
     .teaser-content h2 {
         font-size: clamp(1.8rem, 4vw, 2.6rem);
         font-weight: 900;
-        color: #fff;
+        color: var(--text-primary);
         line-height: 1.2;
         margin-bottom: 1.5rem;
     }
     .teaser-content h2 span { color: #FFD700; }
     .teaser-content p {
-        color: rgba(255,255,255,0.7);
+        color: var(--text-secondary);
         font-size: 1rem;
         line-height: 1.8;
         margin-bottom: 2rem;

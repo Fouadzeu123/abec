@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>@yield('title', 'Organisation du Bien-Être Communautaire | ABEC International')</title>
-    
+
     <!-- Theme Initialization -->
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -35,6 +35,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -67,34 +68,44 @@
         /* ===== THEME SYSTEM ===== */
         :root {
             --bg-primary: #ffffff;
+            --bg-secondary: #f3f4f6;
             --text-primary: #111827;
             --text-secondary: #4b5563;
-            --text-muted: #9ca3af;
-            --nav-bg: rgba(255, 255, 255, 0.97);
-            --nav-border: rgba(0, 0, 0, 0.06);
+            --text-muted: #6b7280;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --nav-border: rgba(0, 0, 0, 0.05);
             --card-bg: #ffffff;
             --card-border: rgba(0, 0, 0, 0.05);
             --footer-bg: #0a0f1c;
+            --footer-text: #f9fafb;
             --section-alt: #f9fafb;
             --loader-bg: #ffffff;
-            --input-bg: #ffffff;
+            --input-bg: #f9fafb;
             --input-border: #e5e7eb;
+            --accent: #1E90FF;
+            --accent-hover: #0B5ED7;
+            --hover-bg: #eff6ff;
         }
 
         .dark {
             --bg-primary: #0a0f1c;
+            --bg-secondary: #111827;
             --text-primary: #f9fafb;
             --text-secondary: #d1d5db;
             --text-muted: #9ca3af;
-            --nav-bg: rgba(10, 15, 28, 0.96);
-            --nav-border: rgba(255, 255, 255, 0.08);
+            --nav-bg: rgba(10, 15, 28, 0.9);
+            --nav-border: rgba(255, 255, 255, 0.1);
             --card-bg: #111827;
             --card-border: rgba(255, 255, 255, 0.1);
             --footer-bg: #050810;
+            --footer-text: #f9fafb;
             --section-alt: #0f172a;
             --loader-bg: #0a0f1c;
             --input-bg: #1f2937;
             --input-border: #374151;
+            --accent: #1E90FF;
+            --accent-hover: #87CEFA;
+            --hover-bg: #1e293b;
         }
 
         /* Transition for theme switching */
@@ -119,8 +130,8 @@
             flex-direction: column; gap: 1rem;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .page-loader.loaded { 
-            opacity: 0; 
+        .page-loader.loaded {
+            opacity: 0;
             visibility: hidden;
             transform: scale(1.05);
         }
@@ -152,9 +163,7 @@
 
         /* Top bar announcement */
         .top-announcement {
-            background: linear-gradient(90deg, #1E90FF 0%, #0B5ED7 50%, #1E90FF 100%);
-            background-size: 200% 100%;
-            animation: shimmer-bg 4s ease infinite;
+            background: #1E90FF;
             overflow: hidden;
             white-space: nowrap;
             height: 36px;
@@ -221,11 +230,9 @@
         }
         .nav-logo-img-wrap {
             width: 48px; height: 48px;
-            
             overflow: hidden;
-            border: 2px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #1E90FF, #FFD700) border-box;
+            border: 2px solid #FFD700;
+            background: #fff;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             flex-shrink: 0;
         }
@@ -277,7 +284,7 @@
         .btn-header-donate {
             display: inline-flex; align-items: center; gap: 0.4rem;
             padding: 0.55rem 1.4rem;
-            background: linear-gradient(135deg, #FFD700 0%, #F59E0B 100%);
+            background: #FFD700;
             color: #000;
             font-weight: 800; font-size: 0.875rem;
             border-radius: 9999px;
@@ -337,7 +344,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 1.1rem; flex-shrink: 0;
         }
-        .mobile-nav-link:hover { background: #eff6ff; color: #1E90FF; }
+        .mobile-nav-link:hover { background: var(--hover-bg); color: var(--accent); }
         .mobile-nav-footer { padding: 1.5rem; border-top: 1px solid var(--nav-border); }
 
         /* Theme Toggle Button */
@@ -361,7 +368,7 @@
         /* ===== FOOTER AMÉLIORÉ (thème sombre) ===== */
         /* Footer Marquee */
         .footer-marquee {
-            background: #0a0f1c; /* fond très sombre */
+            background: var(--footer-bg);
             border-top: 1px solid rgba(255, 215, 0, 0.2);
             border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             padding: 1rem 0;
@@ -387,9 +394,9 @@
         }
 
         .site-footer {
-            background: #000000;
+            background: var(--footer-bg);
             position: relative; overflow: hidden;
-            color: white;
+            color: var(--footer-text);
             padding-top: 5rem;
             border-top: 1px solid rgba(255,215,0,0.15);
         }
@@ -412,12 +419,12 @@
         }
         .footer-glow-1 {
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(30,144,255,0.15) 0%, transparent 70%);
+            background: rgba(30,144,255,0.05);
             top: -300px; right: -200px;
         }
         .footer-glow-2 {
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            background: rgba(255,215,0,0.03);
             bottom: -250px; left: -150px;
         }
         /* Boutons sociaux améliorés */
@@ -457,7 +464,7 @@
             text-decoration: none;
             padding: 0.4rem 0;
             transition: color 0.3s ease, transform 0.3s ease, gap 0.3s ease;
-            
+
         }
         .footer-link-item i { color: #FFD700; font-size: 0.9rem; transition: transform 0.3s ease, color 0.3s ease; }
         .footer-link-item:hover { color: #FFD700; transform: translateX(8px); gap: 0.75rem; }
@@ -492,7 +499,7 @@
 
         /* Footer CTA amélioré */
         .footer-cta {
-            background: linear-gradient(145deg, #1E90FF 0%, #0B5ED7 100%);
+            background: #1E90FF;
             border-radius: 2rem; padding: 3rem 2.5rem;
             position: relative; overflow: hidden;
             margin: 3rem 0;
@@ -594,9 +601,9 @@
 
                 <!-- Desktop Actions -->
                 <div class="hidden md:flex items-center gap-3">
-                    <button class="theme-toggle-btn" id="theme-toggle" aria-label="Changer de thème">
-                        <i class="ri-sun-line hidden dark:block"></i>
-                        <i class="ri-moon-line block dark:hidden"></i>
+                    <button class="theme-toggle-btn group" id="theme-toggle" aria-label="Changer de thème">
+                        <i class="ri-sun-line hidden dark:block text-yellow group-hover:scale-110 transition"></i>
+                        <i class="ri-moon-line block dark:hidden text-primary group-hover:scale-110 transition"></i>
                     </button>
                     <a href="{{ url('/dons') }}" class="btn-header-donate">
                         <i class="ri-heart-3-fill text-red-500"></i>
@@ -627,9 +634,9 @@
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <button class="theme-toggle-btn w-9 h-9" id="mobile-theme-toggle" aria-label="Changer de thème">
-                    <i class="ri-sun-line hidden dark:block"></i>
-                    <i class="ri-moon-line block dark:hidden"></i>
+                <button class="theme-toggle-btn w-9 h-9 group" id="mobile-theme-toggle" aria-label="Changer de thème">
+                    <i class="ri-sun-line hidden dark:block text-yellow transition"></i>
+                    <i class="ri-moon-line block dark:hidden text-primary transition"></i>
                 </button>
                 <button class="mobile-nav-close" id="mobile-menu-close" aria-label="Fermer">
                     <i class="ri-close-line text-lg"></i>
@@ -702,12 +709,6 @@
 
     <!-- Conteneur principal -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 z-10">
-        <!-- Phrase défilante premium -->
-        <div class="mb-12 py-3 border-y border-yellow/20 overflow-hidden bg-yellow/5 backdrop-blur-sm rounded-2xl">
-            <div class="animate-marquee whitespace-nowrap text-yellow font-black text-xl md:text-2xl tracking-[0.2em]">
-                <span class="mx-4"></span> AGIR ENSEMBLE POUR LE BIEN-ÊTRE COMMUNAUTAIRE <span class="mx-4">✦</span> SOUTENEZ NOS ACTIONS <span class="mx-4">✦</span> REJOIGNEZ LE MOUVEMENT <span class="mx-4">✦</span>
-            </div>
-        </div>
 
         <!-- Grille principale 4 colonnes -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
@@ -842,7 +843,7 @@
         // ===== THEME TOGGLE LOGIC =====
         const themeToggle = document.getElementById('theme-toggle');
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
-        
+
         function toggleTheme() {
             const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');

@@ -17,7 +17,7 @@
     }
     #faqHero .hero-overlay {
         position: absolute; inset: 0;
-        background: linear-gradient(135deg, rgba(0,0,30,0.7) 0%, rgba(30,144,255,0.2) 60%, rgba(0,0,0,0.6) 100%);
+        background: rgba(0,0,30,0.65);
         z-index: 1;
     }
     #faqHero .hero-content {

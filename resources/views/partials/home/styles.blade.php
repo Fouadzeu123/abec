@@ -10,7 +10,7 @@
     .bounce-down-arrow {
         display: inline-block;
         animation: bounceDown 2s infinite;
-        color: #1E90FF;
+        color: var(--accent);
         margin-left: 6px;
         vertical-align: middle;
     }
@@ -32,11 +32,11 @@
     }
     .arrow-svg {
         width: 40px; height: 40px;
-        fill: #1E90FF;
+        fill: var(--accent);
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         transition: all 0.3s ease;
     }
-    .arrow-svg:hover { fill: #0D47A1; transform: scale(1.1); }
+    .arrow-svg:hover { fill: var(--accent-hover); transform: scale(1.1); }
 
     /* PARTNERS MARQUEE PREMIUM */
     @keyframes marquee-infinite {
@@ -86,12 +86,14 @@
     /* PARTNERS MARQUEE PREMIUM (suite) */
     .marquee-fade-left {
         position: absolute; top: 0; left: 0; width: 15%; height: 100%;
-        background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+        background: var(--bg-primary);
+        opacity: 0.8;
         z-index: 2; pointer-events: none;
     }
     .marquee-fade-right {
         position: absolute; top: 0; right: 0; width: 15%; height: 100%;
-        background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+        background: var(--bg-primary);
+        opacity: 0.8;
         z-index: 2; pointer-events: none;
     }
     .partner-glass-card {
@@ -116,7 +118,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(30,144,255,0.05) 0%, transparent 100%);
+        background: rgba(30,144,255,0.05);
         opacity: 0;
         transition: opacity 0.4s ease;
     }
@@ -167,7 +169,7 @@
     .hero-slide.active .hero-slide-bg { transform: scale(1); }
     .hero-slide-overlay {
         position: absolute; inset: 0;
-        background: linear-gradient(135deg, rgba(0,0,30,0.68) 0%, rgba(30,144,255,0.18) 60%, rgba(0,0,0,0.55) 100%);
+        background: rgba(0,0,30,0.65);
     }
     .hero-slide-content {
         position: relative; z-index: 3;
@@ -295,7 +297,8 @@
     }
     /* Action Card Styles with Before/After */
     .action-card {
-        background-color: #FFF8DC;
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
         position: relative;
         overflow: hidden;
         transition: transform 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
@@ -313,7 +316,7 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+        background: rgba(255, 215, 0, 0.2);
         transition: left 0.6s ease;
     }
     .action-card:hover::before {
@@ -372,7 +375,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.95);
+        background: var(--loader-bg);
         z-index: 9999;
         transition: opacity 0.7s ease-out;
     }
@@ -485,7 +488,7 @@
     }
     .modal-title {
         font-size: 1.5rem;
-        color: #1E90FF;
+        color: var(--accent);
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         margin-bottom: 0.75rem;
         padding-right: 2rem;
@@ -500,7 +503,7 @@
     /* Style pour les titres des sections avec ombre derrière */
     .section-title {
         text-transform: uppercase;
-        color: #1E90FF;
+        color: var(--accent);
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         position: relative;
         display: inline-block;
@@ -520,7 +523,7 @@
     }
     /* Style pour les cartes de la section Nos Actions */
     .action-card h3 {
-        color: #1E90FF;
+        color: var(--accent);
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     .action-card p {
@@ -668,8 +671,7 @@
     #actions::before {
         content: '';
         position: absolute; inset: 0;
-        background: radial-gradient(ellipse at 20% 50%, rgba(30,144,255,0.07) 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.05) 0%, transparent 50%);
+        background: rgba(30,144,255,0.03);
         pointer-events: none;
     }
     .actions-title {
@@ -807,19 +809,19 @@
     .teaser-video-wrap::after {
         content: '';
         position: absolute; inset: 0;
-        background: linear-gradient(to right, rgba(13,27,42,0.4), transparent);
+        background: rgba(13,27,42,0.3);
         pointer-events: none;
     }
     .teaser-content h2 {
         font-size: clamp(1.8rem, 4vw, 2.6rem);
         font-weight: 900;
-        color: #fff;
+        color: var(--text-primary);
         line-height: 1.2;
         margin-bottom: 1.5rem;
     }
     .teaser-content h2 span { color: #FFD700; }
     .teaser-content p {
-        color: rgba(255,255,255,0.7);
+        color: var(--text-secondary);
         font-size: 1rem;
         line-height: 1.8;
         margin-bottom: 2rem;

@@ -1,8 +1,8 @@
 <section id="partners" class="overflow-hidden relative" style="background: var(--section-alt); padding: 6rem 0; border-top: 1px solid var(--nav-border);">
 
     <!-- Orbes décoratifs -->
-    <div style="position:absolute; width:600px; height:600px; background:radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%); top:-200px; right:-100px; border-radius:50%; pointer-events:none;"></div>
-    <div style="position:absolute; width:400px; height:400px; background:radial-gradient(circle, rgba(30,144,255,0.08) 0%, transparent 70%); bottom:-150px; left:-100px; border-radius:50%; pointer-events:none;"></div>
+    <div style="position:absolute; width:600px; height:600px; background:rgba(255,215,0,0.03); top:-200px; right:-100px; border-radius:50%; pointer-events:none;"></div>
+    <div style="position:absolute; width:400px; height:400px; background:rgba(30,144,255,0.05); bottom:-150px; left:-100px; border-radius:50%; pointer-events:none;"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 relative z-10 section-animate">
         <!-- Badge -->
@@ -38,12 +38,46 @@
         </div>
     </div>
     <!-- Fade edges -->
-    <div style="position:absolute;top:0;left:0;width:12%;height:100%;background:linear-gradient(to right,var(--section-alt),transparent);z-index:2;pointer-events:none;"></div>
-    <div style="position:absolute;top:0;right:0;width:12%;height:100%;background:linear-gradient(to left,var(--section-alt),transparent);z-index:2;pointer-events:none;"></div>
+    <div style="position:absolute;top:0;left:0;width:12%;height:100%;background:var(--section-alt);opacity:0.8;z-index:2;pointer-events:none;"></div>
+    <div style="position:absolute;top:0;right:0;width:12%;height:100%;background:var(--section-alt);opacity:0.8;z-index:2;pointer-events:none;"></div>
 
     <!-- Infinite Marquee -->
     <div class="marquee-track relative py-4 overflow-hidden">
-        ...
+        <div class="animate-marquee-infinite">
+            <!-- Set 1 -->
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (3).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (4).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (5).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/lion.png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (6).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+
+            <!-- Set 2 (Duplicate for infinite loop) -->
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (3).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (4).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (5).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/lion.png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+            <div class="partner-glass-card">
+                <img src="{{ asset('image/brasserie (6).png') }}" alt="Partner" class="partner-logo-img">
+            </div>
+        </div>
     </div>
 
     <!-- CTA Partenariat -->

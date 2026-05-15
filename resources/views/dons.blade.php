@@ -22,7 +22,7 @@
     }
     #donHero .hero-overlay {
         position: absolute; inset: 0;
-        background: linear-gradient(135deg, rgba(0,0,30,0.8) 0%, rgba(30,144,255,0.3) 60%, rgba(0,0,0,0.7) 100%);
+        background: rgba(0,0,30,0.7);
         z-index: 1;
     }
     #donHero .hero-content {
@@ -63,7 +63,7 @@
 
     /* ===== SECTIONS COMMUNES ===== */
     .don-section {
-        background: linear-gradient(160deg, #0f0f1a 0%, #0d1b2a 50%, #0f0f1a 100%);
+        background: var(--bg-primary);
         padding: 5rem 0;
         position: relative;
         overflow: hidden;
@@ -71,14 +71,13 @@
     .don-section::before {
         content: '';
         position: absolute; inset: 0;
-        background: radial-gradient(ellipse at 20% 50%, rgba(30,144,255,0.07) 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.05) 0%, transparent 50%);
+        background: rgba(30,144,255,0.03);
         pointer-events: none;
     }
     .section-title {
         font-size: clamp(1.6rem, 4vw, 2.8rem);
         font-weight: 900;
-        color: #ffffff;
+        color: var(--text-primary);
         text-align: center;
         letter-spacing: -0.02em;
         margin-bottom: 2rem;
@@ -114,9 +113,9 @@
         position: relative;
         border-radius: 1rem;
         overflow: hidden;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
-        padding: 1.25rem 1rem;               /* padding réduit sur mobile */
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        padding: 1.25rem 1rem;
         text-align: center;
         transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s ease, border-color 0.3s;
         opacity: 0;
@@ -154,7 +153,7 @@
     .reason-card h3 {
         font-size: 1rem;
         font-weight: 800;
-        color: #fff;
+        color: var(--text-primary);
         margin-bottom: 0.5rem;
         line-height: 1.3;
     }
@@ -162,7 +161,7 @@
     /* Description (mobile) */
     .reason-card p {
         font-size: 0.7rem;
-        color: rgba(255,255,255,0.5);
+        color: var(--text-secondary);
         line-height: 1.5;
         margin-bottom: 0;
     }
@@ -244,15 +243,15 @@
     .don-form {
         max-width: 600px;
         margin: 2rem auto 0;
-        background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 1.5rem;
         padding: 2rem;
         backdrop-filter: blur(4px);
     }
     .don-form label {
         display: block;
-        color: #fff;
+        color: var(--text-primary);
         font-size: 0.8rem;
         font-weight: 700;
         margin-bottom: 0.3rem;
@@ -262,11 +261,11 @@
     .don-form input,
     .don-form select {
         width: 100%;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
+        background: var(--input-bg);
+        border: 1px solid var(--input-border);
         border-radius: 0.8rem;
         padding: 0.8rem 1rem;
-        color: #fff;
+        color: var(--text-primary);
         font-size: 0.9rem;
         transition: all 0.3s ease;
         margin-bottom: 1.2rem;
@@ -300,8 +299,8 @@
     }
     .don-form .btn-secondary {
         background: transparent;
-        border: 1px solid rgba(255,255,255,0.2);
-        color: #fff;
+        border: 1px solid var(--input-border);
+        color: var(--text-primary);
         font-weight: 700;
         padding: 0.9rem 2rem;
         border-radius: 0.8rem;

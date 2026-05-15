@@ -17,7 +17,7 @@
     }
     #partnerHero .hero-overlay {
         position: absolute; inset: 0;
-        background: linear-gradient(135deg, rgba(0,0,30,0.7) 0%, rgba(30,144,255,0.2) 60%, rgba(0,0,0,0.6) 100%);
+        background: rgba(0,0,30,0.6);
         z-index: 1;
     }
     #partnerHero .hero-content {
@@ -58,7 +58,7 @@
 
     /* ===== SECTION PARTENAIRE ===== */
     .partner-section {
-        background: linear-gradient(160deg, #0f0f1a 0%, #0d1b2a 50%, #0f0f1a 100%);
+        background: #0f0f1a;
         padding: 5rem 0;
         position: relative;
         overflow: hidden;
@@ -66,8 +66,7 @@
     .partner-section::before {
         content: '';
         position: absolute; inset: 0;
-        background: radial-gradient(ellipse at 20% 50%, rgba(30,144,255,0.07) 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 20%, rgba(255,215,0,0.05) 0%, transparent 50%);
+        background: rgba(30,144,255,0.03);
         pointer-events: none;
     }
     .section-title {
